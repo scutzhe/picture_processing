@@ -3,4 +3,6 @@
 2. 普通图片处理成红外像素图片(暂时没有找到直接处理代码)  
 # description
 1. infrared_images.py -> base image transformation  
-2. align_image.py -> near Infrared Spectrum
+2. align_image.py -> near Infrared Spectrum  
+3. extract_feature.py basic image feature  
+4. synthesis_image.py simple synthesis image for augmentation  
