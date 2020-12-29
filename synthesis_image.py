@@ -50,6 +50,22 @@ def zip_video(ori_video_path,fps,zip_video_path):
     os.system("ffmpeg -i {} -r {} -b:v {} {}".format(ori_video_path, fps, "1.5M", zip_video_path))
     # ffmpeg -i old.mp4 -r 24 -b:v 1.5M new.mp4
 
+def split_channel(image):
+    """
+    @param image:
+    @return:
+    """
+    # split channel
+    (B,G,R) = cv2.split(image)
+    cv2.imshow("B",B)
+    cv2.imshow("G",G)
+    cv2.imshow("R",R)
+    cv2.waitKey(1000)
+    # merge channel
+    image_new = cv2.merge([R,G,B])
+    cv2.imshow("image_new",image_new)
+    cv2.waitKey(1000)
+
 def extract_background(image):
     """
     @param image:
