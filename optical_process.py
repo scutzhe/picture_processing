@@ -61,7 +61,7 @@ if __name__ == '__main__':
     image_path = ''
     blockSize = 16
     image = cv2.imread(image_path)
-    dst = unevenLightCompensate(image, blockSize)
+    dst = uneven_light_compensate(image, blockSize)
     result = np.concatenate([image, dst], axis=1)
     cv2.imshow('result', result)
     cv2.waitKey(0)
