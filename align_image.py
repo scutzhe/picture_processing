@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-# @author  : 郑祥忠
-# @license : (C) Copyright,2016-2020
+# @author  : dylen
+# @license : (C) Copyright,2016-
 # @contact : dylenzheng@gmail.com
 # @file    : align_image.py
 # @time    : 11/20/20 8:40 AM
