@@ -57,6 +57,7 @@ def uneven_light_compensate(image, blockSize=32):
 
     return dst
 
+
 if __name__ == '__main__':
     image_path = ''
     blockSize = 16

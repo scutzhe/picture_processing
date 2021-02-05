@@ -35,6 +35,10 @@ def crop_box(image_ori,box):
     @return:
     """
     # crop image from origin image
+    H,W = image_ori.shape[:2]
+    if box[0] < 0 or box[2] > W or box[1] < 0 or box[3] > H:
+        print("coordination's value error !!!")
+        return None
     image = image_ori[box[1]:box[3],box[0]:box[2],:]
     w = box[2] - box[0]
     h = box[3] - box[1]
@@ -44,6 +48,7 @@ def crop_box(image_ori,box):
         square[:, (scale - w) // 2: w + (scale - w) // 2, :] = image
     else:
         square[(scale - h) // 2: h + (scale - h) // 2, :, :] = image
+    return  square
 
 
 def pad_to_square(img, pad_value):
