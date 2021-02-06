@@ -10,6 +10,8 @@
 '''
 import os
 import cv2
+import random
+from PIL import Image
 
 def pic_video(image_dir):
     """
@@ -78,12 +80,77 @@ def extract_foreground(image):
     @return:
     """
 
-def synthesis(image_one,image_two):
+def synthesis_simple_image(image_mother,image_son,coordination=None,factor=1):
     """
-    @param image_one:
-    @param image_two:
+    @param image_mother:母图
+    @param image_son:子图
+    @param coordination:子图在母图中的坐标
+    @param factor:子图缩放因子
     @return:
     """
+    H_M,W_M = image_mother.size
+    H_S,W_S = image_son.size
+    size_h = H_S / factor
+    size_w = W_S / factor
+
+    if size_h > H_M:
+        size_h = H_M
+    if size_w > W_M:
+        size_w = W_M
+
+    icon = image_son.resize((size_w,size_h),Image.CUBIC)
+    x_start = (W_M - W_S) // 2
+    y_start = (H_M - H_S) // 2
+    try:
+        if coordination == None:
+            coordination = (x_start,y_start)
+            image_mother.paste(icon,coordination,mask=None)
+        else:
+            print(" paint by coordination")
+            image_mother.paste(icon,coordination,mask=None)
+    except Exception as e:
+        print(e)
+
+    return image_mother
+
+
+def synthesis_random_image(image_mother,image_son,coordination=None,factor=1):
+    """
+    @param image_mother:
+    @param image_son:
+    @param coordination:
+    @param factor:
+    @return:
+    """
+    """
+    这是一种方法在原图任意位置上贴图的方法,目的是增强目标检测
+    """
+    H_M, W_M = image_mother.size
+    H_S, W_S = image_son.size
+    size_h = H_S / factor
+    size_w = W_S / factor
+
+    if size_h > H_M:
+        size_h = H_M
+    if size_w > W_M:
+        size_w = W_M
+
+    icon = image_son.resize((size_w, size_h), Image.CUBIC)
+    x_start = (W_M - W_S) // 2
+    y_start = (H_M - H_S) // 2
+    try:
+        if coordination == None:
+            coordination = (x_start, y_start)
+            image_mother.paste(icon, coordination, mask=None)
+        else:
+            x = random.randint(0,W_M-size_w)
+            y = random.randint(0,H_M-size_h)
+            if (x < W_M-size_w and y < H_M-size_h):
+                coordination = (x,y)
+                image_mother.paste(icon,coordination,mask=None)
+    except Exception as e:
+        print(e)
+
 
 if __name__ == '__main__':
     pass
